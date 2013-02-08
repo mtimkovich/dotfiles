@@ -9,7 +9,7 @@ opendir DH, $ENV{PWD};
 
 while (my $file = readdir DH) {
     next if $file =~ /^\.*$/;
-    next if $file =~ /\.bak$/;
+    next if $file =~ /README/;
     next if $file =~ /^\.git/;
     next if $0 =~ /$file/;
 
