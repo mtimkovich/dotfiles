@@ -7,3 +7,5 @@ Installation
 ============
 
 The `install.pl` file will symlink the dotfiles to your home directory. Make sure it is run from the 'dotfiles' directory.
+
+Be sure to run `:BundleInstall` from vim to install the vim plugins
