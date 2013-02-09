@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+sub yesno {
+    print "$_[0] [Y/n] ";
+    chomp($_ = <STDIN>);
+
+    /y/i;
+}
+
+my $ext = ".bak";
+
+if (not @ARGV) {
+    print "unbk: missing name of file to unbackup.\n";
+    print "Try 'unbk --help' for more information.\n";
+    exit;
+}
+
+if ($ARGV[0] eq "--help") {
+    print "Usage: unbk [SOURCE]\n";
+    print "Rename SOURCE.bak to SOURCE\n";
+    exit;
+}
+
+for my $i (@ARGV) {
+    my $old_name = $i;
+    my $new_name = $i;
+    $new_name =~ s/$ext(\.\d+)?$//;
+
+    if (not -e $old_name) {
+        warn "'$old_name' does not exist\n";
+        next;
+    }
+
+    if (not -f $old_name) {
+        warn "'$old_name' is not a file\n";
+        next;
+    }
+
+    if ($new_name eq $old_name) {
+        warn "Error: '$ext' not found in filename: $old_name\n";
+        next;
+    }
+
+    my $r;
+
+    if (-e $new_name) {
+        next if not yesno "Overwrite '$new_name'?";
+    }
+
+    if (rename $old_name, $new_name) {
+        print "'$old_name' -> '$new_name'\n";
+    } else {
+        print "'$old_name' not unbackuped: $!\n";
+    }
+}

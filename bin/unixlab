@@ -1,0 +1,60 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use feature qw(switch say);
+use LWP::Simple;
+
+my $url = "http://apps.cs.utexas.edu/unixlabstatus/";
+
+my $html = get $url;
+
+die "Cannot connect to $url\n" unless defined $html;
+
+my @lines = split /\n/, $html;
+
+my @table = grep /<td class="ruptime"/, @lines;
+
+my @stations;
+my $station_index = 0;
+
+while (my ($i, $value) = each @table) {
+    $value =~ s#^.*?>(.*)</td>#$1#;
+
+    given ($i % 5) {
+        when (0) {
+            $station_index++ unless $i == 0;
+
+            push @stations, {};
+            $stations[$station_index]{host} = $value;
+        }
+        when (1) {
+            $stations[$station_index]{status} = $value;
+        }
+        when (2) {
+            $stations[$station_index]{uptime} = $value;
+        }
+        when (3) {
+            $stations[$station_index]{users} = $value;
+        }
+        when (4) {
+            $stations[$station_index]{load} = $value;
+        }
+    }
+}
+
+# Find machine with lowest load
+my $min_load = $stations[0]{load};
+my $min_index = 0;
+
+while (my ($i, $station) = each @stations) {
+    next if $i == 0;
+    next if $station->{status} eq "down";
+
+    if ($station->{load} <= $min_load) {
+        $min_index = $i;
+        $min_load = $station->{load};
+    }
+}
+
+say "$stations[$min_index]{host}.cs.utexas.edu";
+

@@ -22,8 +22,6 @@ while (my $file = readdir DH) {
 
     say "Creating symlink to $file in home directory";
     symlink "$ENV{PWD}/$file", "$ENV{HOME}/$file";
-
-    say "";
 }
 
 closedir DH;

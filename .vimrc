@@ -155,4 +155,5 @@ if has("persistent_undo")
 endif
 
 " Supertab completion type "Keywords in current file"
-let g:SuperTabDefaultCompletionType = "<c-x><c-p>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
+

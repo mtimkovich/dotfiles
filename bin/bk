@@ -1,0 +1,42 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use feature 'say';
+use File::Copy;
+
+my $ext = '.bak';
+
+if (not @ARGV) {
+    say "Usage: bk SOURCE";
+    say "Rename SOURCE to SOURCE$ext";
+    say "If SOURCE$ext exists, will append a number";
+    exit;
+}
+
+for my $file (@ARGV) {
+    if (not -e $file) {
+        warn "'$file' does not exist\n";
+        next;
+    }
+
+    if (not -f $file) {
+        warn "'$file' is not a file\n";
+        next;
+    }
+
+    my $new_name = $file . $ext;
+    my $number = 1;
+
+    while (-e $new_name) {
+        $new_name = $file . $ext;
+        $new_name = "$new_name.$number";
+        $number++;
+    }
+
+    if (copy $file, $new_name) {
+        say "'$file' -> '$new_name'";
+    } else {
+        warn "Error backing up '$new_name': $!\n";
+    }
+}
+

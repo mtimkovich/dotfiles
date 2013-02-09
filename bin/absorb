@@ -1,0 +1,85 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use File::Copy::Recursive "dircopy";
+use Cwd;
+use autodie;
+use feature 'say';
+
+my @ABS_DIRS = qw(core extra community multilib);
+my $BUILD_DIR = "$ENV{HOME}/abs";
+
+# Colors
+my $RED = "\e[1;31m";
+my $BLUE = "\e[1;34m";
+my $GREEN = "\e[1;32m";
+my $YELLOW = "\e[1;33m";
+my $EC = "\e[0m";
+
+sub yesno {
+    print "${GREEN}::${EC} $_[0] [Y/n] ";
+    chomp($_ = <STDIN>);
+    
+    /y/i;
+}
+
+sub error {
+    warn "${RED}::${EC} $_[0]\n";
+}
+
+sub info {
+    say "${BLUE}::${EC} $_[0]";
+}
+
+if (not @ARGV or $ARGV[0] ne "-S") {
+    say "Usage: $0 -S [packages]";
+    exit;
+}
+
+if (not -d $BUILD_DIR) {
+    mkdir $BUILD_DIR;
+}
+
+# Remove the -S
+shift @ARGV;
+
+for my $pkg (@ARGV) {
+    my $INSTALL_FILE = "$pkg.install";
+    my $found = 0;
+
+    for my $repo (@ABS_DIRS) {
+        chdir "/var/abs/$repo";
+
+        if (-d $pkg) {
+            $found = 1;
+            last;
+        }
+    }
+
+    if (not $found) {
+        error "Package '$pkg' not found";
+        next;
+    }
+
+    dircopy $pkg, "$BUILD_DIR/$pkg";
+    info "$pkg found in " . getcwd() . " and copied to $BUILD_DIR";
+
+    chdir "$BUILD_DIR/$pkg";
+
+    if (yesno "Edit PKGBUILD?") {
+        system "$ENV{EDITOR} PKGBUILD";
+    }
+
+    if (-e $INSTALL_FILE) {
+        if (yesno "Edit $INSTALL_FILE?") {
+            system "$ENV{EDITOR} $INSTALL_FILE";
+        }
+    }
+
+    say "Enter the arguments to be passed to makepkg";
+    print "> ";
+    chomp(my $r = <STDIN>);
+
+    system "makepkg $r";
+}
+
