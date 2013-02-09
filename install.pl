@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use feature "say";
 
-my $backup_dir = "$ENV{HOME}/dotfiles_old";
+my $backup_dir = "$ENV{HOME}/dotfiles_new";
 
 opendir DH, $ENV{PWD};
 
@@ -13,15 +13,18 @@ while (my $file = readdir DH) {
     next if $file =~ /^\.git/;
     next if $0 =~ /$file/;
 
-    if (-e "$ENV{HOME}/$file" and not -l "$ENV{HOME}/$file") {
+    my $old = "$ENV{PWD}/$file";
+    my $new = "$ENV{HOME}/$file";
+
+    if (-e $new and not -l $new) {
         mkdir $backup_dir;
 
-        say "Backing up old $file to $backup_dir";
-        rename "$ENV{HOME}/$file", "$backup_dir/$file";
+        say "Backing up new $file to $backup_dir";
+        rename $new, "$backup_dir/$file";
     }
 
     say "Creating symlink to $file in home directory";
-    symlink "$ENV{PWD}/$file", "$ENV{HOME}/$file";
+    symlink $old, $new;
 }
 
 closedir DH;
