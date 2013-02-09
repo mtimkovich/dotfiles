@@ -19,6 +19,7 @@ Bundle 'mtimkovich/Comment'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+Bundle 'SearchComplete'
 
 filetype indent on
 
@@ -108,7 +109,7 @@ noremap k gk
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 " Cmdline Completion
-cmap <Tab> <Plug>CmdlineCompleteBackward
+" cmap <Tab> <Plug>CmdlineCompleteBackward
 
 " Insert New Line Without Entering Insert Mode
 nnoremap <C-J> o<Esc>
