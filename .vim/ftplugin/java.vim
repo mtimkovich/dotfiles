@@ -6,21 +6,24 @@ setlocal smarttab
 setlocal expandtab
 setlocal smartindent
 
-" set foldmethod=indent
-" set foldlevel=1
-" set foldnestmax=2
-" 
-" map <buffer> f za
-" map <buffer> F :call ToggleFold()<CR>
-" let b:folded = 1
-" 
-" function! ToggleFold()
-"     if( b:folded == 0 )
-"         exec "normal! zM"
-"         let b:folded = 1
-"     else
-"         exec "normal! zR"
-"         let b:folded = 0
-"     endif
-" endfunction
-" 
+iab psvm public static void main(String[] args) {
+iab sout System.out.println
+iab sop System.out.print
+" iab serr System.err.println(
+" iab pr private
+" iab pe protected
+" iab pu public
+" iab ex extends
+" iab bo boolean
+" iab ab abstract
+" iab cl class
+" iab st static
+" iab fi final
+" iab ir import
+" iab re return
+" iab sw switch
+" iab Ob Object
+" iab Ex Exception
+" iab En Enumeration
+" iab Gr Graphics
+

@@ -13,7 +13,7 @@ while (my $file = readdir DH) {
     next if $file =~ /^\.git/;
     next if $0 =~ /$file/;
 
-    if (-e "$ENV{HOME}/$file") {
+    if (-e "$ENV{HOME}/$file" and not -l "$ENV{HOME}/$file") {
         mkdir $backup_dir;
 
         say "Backing up old $file to $backup_dir";

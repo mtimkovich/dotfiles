@@ -2,13 +2,33 @@ runtime! archlinux.vim
 syntax on
 set background=dark
 
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle (required)
+Bundle 'gmarik/vundle'
+
+" Repos on github
+Bundle 'ervandew/supertab'
+Bundle 'mtimkovich/JavaRun'
+Bundle 'mtimkovich/Comment'
+
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+
+filetype indent on
+
 set t_Co=256
 " Check if we're in a tty
 if $DISPLAY == ""
-    colorscheme motus
+	colorscheme motus
 else
-    colorscheme Mustang_Vim_Colorscheme_by_hcalves
-"     colorscheme eclipse2
+	colorscheme Mustang_Vim_Colorscheme_by_hcalves
+" 	colorscheme eclipse2
 endif
 
 " GVim
@@ -31,6 +51,9 @@ set autoindent
 set smartindent
 set showtabline=1
 
+set wildmode=longest,list,full
+set wildmenu
+
 " Disable Autocommenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -41,9 +64,8 @@ set showcmd
 set autowrite
 set hidden  
 set mouse=a
-filetype on
-filetype plugin on
-filetype indent on
+" filetype on
+" filetype plugin on
 set history=1000
 set scrolloff=5
 " set textwidth=80
