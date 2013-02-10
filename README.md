@@ -10,6 +10,6 @@ The `install.pl` file will symlink the dotfiles to your home directory. Make sur
 
 
 Be sure to run 
-	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 and then `:BundleInstall` from within vim to install the vim plugins
