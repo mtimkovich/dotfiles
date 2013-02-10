@@ -19,7 +19,7 @@ while (my $file = readdir DH) {
     if (-e $new and not -l $new) {
         mkdir $backup_dir;
 
-        say "Backing up new $file to $backup_dir";
+        say "Backing up old $file to $backup_dir";
         rename $new, "$backup_dir/$file";
     }
 
