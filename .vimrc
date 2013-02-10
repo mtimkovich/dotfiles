@@ -25,12 +25,12 @@ filetype indent on
 
 set t_Co=256
 " Check if we're in a tty
-if $DISPLAY == ""
-	colorscheme motus
-else
+" if $DISPLAY == ""
+" 	colorscheme motus
+" else
 	colorscheme Mustang_Vim_Colorscheme_by_hcalves
 " 	colorscheme eclipse2
-endif
+" endif
 
 " GVim
 if has("gui_running")

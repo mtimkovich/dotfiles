@@ -1,0 +1,67 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Getopt::Std;
+use feature 'say';
+
+sub yesno {
+    my ($prompt) = @_;
+
+    print "$prompt [Y/n] ";
+    chomp($_ = <>);
+
+    /y/i
+}
+
+sub help {
+    say <<EOF;
+Usage: $0 [OPTION] PERLEXPR FILE...
+Rename FILE(s) using PERLEXPR on each filename.
+
+  -i  prompt before overwrite
+  -n  don't rename, implies -v
+  -v  explain what is being done
+  -h  display this help and exit
+
+All regular expressions work on \$_
+EOF
+    exit;
+}
+
+if (not @ARGV) {
+    help;
+}
+
+my %opts;
+
+getopts('nvih', \%opts);
+
+if ($opts{h}) {
+    help;
+}
+
+$opts{v} = 1 if $opts{n};
+
+my $regex = shift @ARGV;
+
+for (@ARGV) {
+    my $file = $_;
+    eval $regex; 
+
+    my $new_file = $_;
+
+    if ($opts{i} and -e $new_file) {
+        if (not yesno "Overwrite '$new_file'?") {
+            next;
+        }
+    }
+
+    if (not $opts{n}) {
+        rename($file, $new_file) or warn "$!\n";
+    }
+
+    if ($opts{v}) {
+        say "'$file' -> '$new_file'";
+    }
+}
+

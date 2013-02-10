@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use feature "say";
 
-my $backup_dir = "$ENV{HOME}/dotfiles_new";
+my $backup_dir = "$ENV{HOME}/dotfiles_old";
 
 opendir DH, $ENV{PWD};
 
