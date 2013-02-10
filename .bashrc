@@ -1,0 +1,6 @@
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias vim='vi'
+alias ..='cd ..'
+alias ls='ls -Ap --color=auto'
