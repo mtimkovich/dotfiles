@@ -21,7 +21,9 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'SearchComplete'
 
-filetype indent on
+filetype on
+filetype plugin on
+filetype plugin indent on
 
 set t_Co=256
 " Check if we're in a tty
@@ -65,14 +67,8 @@ set showcmd
 set autowrite
 set hidden  
 set mouse=a
-" filetype on
-" filetype plugin on
 set history=1000
 set scrolloff=5
-" set textwidth=80
-" set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-" set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-" let g:WriteBackup_BackupDir = '/home/max/.vim-tmp' 
 set ruler
 set backspace=indent,eol,start
 set shortmess=atI

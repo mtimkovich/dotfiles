@@ -8,11 +8,7 @@ Installation
 
 The `install.pl` file will symlink the dotfiles to your home directory. Make sure it is run from the 'dotfiles' directory.
 
+The script will also download and run [Vundle][1] to install the vim plugins.
 
-Be sure to run 
+[1]: http://github.com/gmarik/vundle
 
-```
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-```
-
-and then `:BundleInstall` from within vim to install the vim plugins

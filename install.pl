@@ -3,9 +3,15 @@ use strict;
 use warnings;
 use feature "say";
 
+sub is_folder_empty {
+    opendir DH, shift or die $!;
+
+    return not grep { not /^\.*$/ } readdir DH;
+}
+
 my $backup_dir = "$ENV{HOME}/dotfiles_old";
 
-opendir DH, $ENV{PWD};
+opendir DH, $ENV{PWD} or die $!;
 
 while (my $file = readdir DH) {
     next if $file =~ /^\.*$/;
@@ -29,3 +35,9 @@ while (my $file = readdir DH) {
 
 closedir DH;
 
+if (is_folder_empty "$ENV{HOME}/.vim/bundle/vundle") {
+    system "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle";
+}
+
+say "Installing bundles";
+system "vim +BundleInstall +qall";
