@@ -43,9 +43,8 @@ if has("gui_running")
     set guifont=Inconsolata\ Medium\ 12
 endif
 
-" set nowrap
-set ic
-set smartcase	
+set ignorecase
+set smartcase
 set number
 set incsearch
 set hlsearch
@@ -54,14 +53,13 @@ set autoindent
 set smartindent
 set showtabline=1
 
-set wildmode=longest,list,full
+set wildmode=longest,list
 set wildmenu
 
 " Disable Autocommenting
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" FuzzyFinder Menu
-" highlight Pmenu ctermbg=DarkBlue gui=bold
+" set fo-=o
+" set fo-=r
+" set fo-=t
 
 set showcmd
 set autowrite
@@ -76,22 +74,23 @@ set autochdir
 set viminfo='20,<50,s10,h,%
 let mapleader = ","
 
-map <C-t> <Esc>:tabnew<CR>
-noremap <UP> <C-w>w
-noremap <DOWN> <C-w>W
+" control-t to open a new tab
+noremap <C-t> <Esc>:tabnew<CR>
+
+" map arrow keys to switching between tabs
 noremap <LEFT> gT
 noremap <RIGHT> gt
 
-map <C-c> <Esc>
+" map arrow keys to switching between windows
+noremap <UP> <C-w>w
+noremap <DOWN> <C-w>W
+
+noremap <C-c> <Esc>
 
 " allow the . to execute once for each line of a visual selection
 vnoremap . :normal .<CR>
 
 vnoremap @q :normal @q<CR>
-
-" Highlight everything right of the 80th column
-" highlight rightMargin ctermfg=red guifg=red
-" autocmd BufWinEnter * let w:m1=matchadd('rightMargin', '\%>79v', -1)
 
 " Turn spellchecking on for .tex files
 " au FileType tex set spell
@@ -102,10 +101,8 @@ au FileType tex noremap Q gqap
 noremap j gj
 noremap k gk
 
-nmap <silent> <leader>n :silent :nohlsearch<CR>
-
-" Cmdline Completion
-" cmap <Tab> <Plug>CmdlineCompleteBackward
+" 
+nnoremap <silent> <leader>n :silent :nohlsearch<CR>
 
 " Insert New Line Without Entering Insert Mode
 nnoremap <C-J> o<Esc>
@@ -114,7 +111,7 @@ nnoremap <C-K> O<Esc>
 " Save as Root
 com! -range -nargs=* W w !sudo tee %
 
-" Fuzzy Finder
+" FuzzyFinder
 nnoremap <silent> <C-f> :FufFile<CR> 
 " Reload Cache
 command -bar R :FufRenewCache
@@ -122,6 +119,7 @@ command -bar R :FufRenewCache
 " Insert Filename
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
+" Set the make command for different filetypes
 au FileType c set makeprg=gcc\ -g\ -o\ %<\ %
 au FileType cpp,cc set makeprg=g++\ -o\ %<\ %
 au FileType java set makeprg=javac\ %
@@ -130,12 +128,10 @@ au FileType go set makeprg=go\ build\ %
 au FileType fortran set makeprg=gfortran\ -ffree-form\ -o\ %<\ %
 au FileType scala set makeprg=scalac\ %
 
-command -bar Curses :set makeprg=gcc\ -o\ %<\ %\ -lncurses 
-command -bar Gtk :set makeprg=gcc\ -o\ %<\ %\ `pkg-config\ --libs\ --cflags\ gtk+-2.0`
-
 " Create templates!
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
 
+" Set markdown tabwidth to 4
 au FileType markdown set shiftwidth=4 | set softtabstop=4 | set tabstop=4 
 
 " Coffeescript
