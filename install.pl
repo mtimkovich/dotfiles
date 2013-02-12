@@ -18,8 +18,6 @@ sub is_folder_empty {
     return not grep { not /^\.*$/ } readdir DH;
 }
 
-my $backup_dir = "$ENV{HOME}/dotfiles_old";
-
 opendir DH, $ENV{PWD} or die $!;
 
 while (my $file = readdir DH) {
@@ -32,15 +30,9 @@ while (my $file = readdir DH) {
     my $old = "$ENV{PWD}/$file";
     my $new = "$ENV{HOME}/$file";
 
+    # Don't prompt if overwriting a symlink
     if (-e $new and not -l $new) {
-        if (yesno "$file exists, overwrite?") {
-            mkdir $backup_dir;
-
-            say "Backing up old $file to $backup_dir";
-            rename $new, "$backup_dir/$file";
-        } else {
-            next;
-        }
+        next unless yesno "$file exists, overwrite?";
     }
 
     say "Creating symlink to $file in home directory";
