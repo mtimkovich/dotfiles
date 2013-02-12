@@ -1,5 +1,9 @@
 [user]
 	name = Max Timkovich
 	email = mtimkovich@gmail.com
+[push]
+	default = simple
 [color]
-	ui = auto
+	branch = auto
+	diff = auto
+	status = auto

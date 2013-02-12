@@ -101,7 +101,7 @@ au FileType tex noremap Q gqap
 noremap j gj
 noremap k gk
 
-" 
+" Turn off highlighting
 nnoremap <silent> <leader>n :silent :nohlsearch<CR>
 
 " Insert New Line Without Entering Insert Mode
