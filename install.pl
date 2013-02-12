@@ -43,7 +43,8 @@ closedir DH;
 
 if (is_folder_empty "$ENV{HOME}/.vim/bundle/vundle") {
     system "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle";
+
+    say "Installing bundles";
+    system "vim +BundleInstall +qall";
 }
 
-say "Installing bundles";
-system "vim +BundleInstall +qall";
