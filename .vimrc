@@ -30,9 +30,14 @@ set t_Co=256
 " if $DISPLAY == ""
 " 	colorscheme motus
 " else
-	colorscheme Mustang_Vim_Colorscheme_by_hcalves
 " 	colorscheme eclipse2
 " endif
+
+if &background == "dark"
+    colors mustang
+else
+    colors default
+endif
 
 " GVim
 if has("gui_running")
