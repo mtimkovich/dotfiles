@@ -159,7 +159,7 @@ set foldnestmax=1
 " Fold on indents
 set foldmethod=indent
 " All folds open by default
-autocmd Syntax * normal zR
+autocmd FileType * normal zR
 
 " Toggle fold state between closed and opened. 
 function! ToggleFold() 
