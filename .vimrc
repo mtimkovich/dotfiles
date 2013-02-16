@@ -173,3 +173,4 @@ function! ToggleFold()
 endfunction
 
 nnoremap <silent> <space> :call ToggleFold()<cr>
+
