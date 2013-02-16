@@ -154,3 +154,22 @@ endif
 " Supertab completion type "Keywords in current file"
 let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
+" Set the maximum fold level to 1
+set foldnestmax=1
+" Fold on indents
+set foldmethod=indent
+" All folds open by default
+autocmd Syntax * normal zR
+
+" Toggle fold state between closed and opened. 
+function! ToggleFold() 
+    if foldlevel('.') > 0 
+        if foldclosed('.') < 0 
+            normal zc
+        else 
+            normal zo
+        endif 
+    endif 
+endfunction
+
+nnoremap <silent> <space> :call ToggleFold()<cr>
