@@ -4,11 +4,11 @@
 
 case $TERM in
 	xterm*|*rxvt*)
-	precmd () {print -Pn "\e]0;urxvt (%~)\a"}
+	precmd () {print -Pn "\e]0;%~\a"}
 	;;
 esac
 
-/usr/bin/fortune
+/usr/bin/fortune -s -n 300
 echo ""
 
 autoload -U colors && colors
@@ -213,7 +213,7 @@ alias halt="sudo halt"
 
 alias Syu='sudo pacman -Syu'
 alias S='sudo pacman -S'
-alias Ss='sudo pacman -Ss'
+alias Ss='pacman -Ss'
 alias Syy='sudo pacman -Syy'
 alias Si='sudo pacman -Si'
 #alias R='sudo pacman -R'

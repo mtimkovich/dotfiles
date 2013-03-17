@@ -13,6 +13,7 @@ Bundle 'gmarik/vundle'
 
 " Repos on github
 Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-markdown'
 Bundle 'mtimkovich/JavaRun'
 Bundle 'mtimkovich/Comment'
 
@@ -78,6 +79,7 @@ set shortmess=atI
 set autochdir
 set viminfo='20,<50,s10,h,%
 let mapleader = ","
+set cmdheight=2
 
 " control-t to open a new tab
 noremap <C-t> <Esc>:tabnew<CR>
@@ -132,6 +134,7 @@ au FileType coffee set makeprg=coffee\ -c\ %
 au FileType go set makeprg=go\ build\ %
 au FileType fortran set makeprg=gfortran\ -ffree-form\ -o\ %<\ %
 au FileType scala set makeprg=scalac\ %
+au FileType markdown set makeprg=markdown\ %\ >\ /tmp/%.html
 
 " Create templates!
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
@@ -174,3 +177,4 @@ endfunction
 
 nnoremap <silent> <space> :call ToggleFold()<cr>
 
+nnoremap <silent> <leader>s :set spell!<cr>

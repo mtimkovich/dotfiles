@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+amixer -q set Headphone 100% unmute
+amixer -q set Speaker 100% unmute

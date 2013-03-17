@@ -7,5 +7,5 @@ fi
 
 chmod +x "$1"
 exe=$(echo "$1" | sed 's/\..*$//')
-cp -vi "$1" $HOME/scripts/"$exe"
+cp -vi "$1" $HOME/bin/"$exe"
 
