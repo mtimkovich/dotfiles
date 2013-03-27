@@ -2,11 +2,13 @@
 use strict;
 use warnings;
 use feature qw(switch say);
-use LWP::Simple;
+use LWP::UserAgent;
 
 my $url = "http://apps.cs.utexas.edu/unixlabstatus/";
 
-my $html = get $url;
+my $ua = LWP::UserAgent->new();
+
+my $html = $ua->get($url)->content;
 
 die "Cannot connect to $url\n" unless defined $html;
 

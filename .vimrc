@@ -81,6 +81,9 @@ set viminfo='20,<50,s10,h,%
 let mapleader = ","
 set cmdheight=2
 
+set backupdir=~/.vim-tmp,/tmp
+set directory=~/.vim-tmp,/tmp
+
 " control-t to open a new tab
 noremap <C-t> <Esc>:tabnew<CR>
 
