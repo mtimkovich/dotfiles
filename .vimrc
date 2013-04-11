@@ -182,3 +182,5 @@ endfunction
 nnoremap <silent> <space> :call ToggleFold()<cr>
 
 nnoremap <silent> <leader>s :set spell!<cr>
+
+nnoremap ; :
