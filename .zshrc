@@ -207,7 +207,7 @@ alias dev_appserver.go='/opt/google-appengine-go/dev_appserver.py'
 alias appcfg.go='/opt/google-appengine-go/appcfg.py'
 
 alias reboot="sudo reboot"
-alias shutdown="sudo shutdown"
+#alias shutdown="sudo shutdown"
 alias poweroff="sudo poweroff"
 alias halt="sudo halt"
 
@@ -257,7 +257,7 @@ alias mc='mc -u'
 alias pseudo='sudo'
 alias fu="exit"
 alias fuck="exit"
-alias shutdown='~/shutdown.sh'
+#alias shutdown='~/shutdown.sh'
 alias hon='~/shutdown.sh'
 alias mplaya='mplayer'
 alias gmail='elinks mail.google.com/mail/h/'

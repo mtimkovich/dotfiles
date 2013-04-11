@@ -14,6 +14,7 @@ Bundle 'gmarik/vundle'
 " Repos on github
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-markdown'
+Bundle 'derekwyatt/vim-scala'
 Bundle 'mtimkovich/JavaRun'
 Bundle 'mtimkovich/Comment'
 
