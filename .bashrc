@@ -1,9 +1,11 @@
 alias rm='rm -vi'
 alias cp='cp -vi'
 alias mv='mv -vi'
-alias vim='vi'
+alias vim='vim -p'
 alias ..='cd ..'
 alias ls='ls -Ap --color=auto'
+
+EDITOR=vim
 
 mdc() { mkdir -p "$1"; cd "$1"; }
  

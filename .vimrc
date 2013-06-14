@@ -15,6 +15,8 @@ Bundle 'gmarik/vundle'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'pangloss/vim-javascript'
 Bundle 'mtimkovich/JavaRun'
 Bundle 'mtimkovich/Comment'
 
@@ -86,7 +88,7 @@ set backupdir=~/.vim-tmp,/tmp
 set directory=~/.vim-tmp,/tmp
 
 " control-t to open a new tab
-noremap <C-t> <Esc>:tabnew<CR>
+" noremap <C-t> <Esc>:tabnew<CR>
 
 " map arrow keys to switching between tabs
 noremap <LEFT> gT
@@ -123,7 +125,7 @@ nnoremap <C-K> O<Esc>
 com! -range -nargs=* W w !sudo tee %
 
 " FuzzyFinder
-nnoremap <silent> <C-f> :FufFile<CR> 
+nnoremap <silent> <C-t> :FufFile<CR> 
 " Reload Cache
 command -bar R :FufRenewCache
 
@@ -162,25 +164,25 @@ endif
 let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
 " Set the maximum fold level to 1
-set foldnestmax=1
+" set foldnestmax=1
 " Fold on indents
-set foldmethod=indent
+" set foldmethod=indent
 " All folds open by default
-autocmd BufRead * normal zR
+" autocmd BufRead,BufNewFile * normal zR
 
 " Toggle fold state between closed and opened. 
-function! ToggleFold() 
-    if foldlevel('.') > 0 
-        if foldclosed('.') < 0 
-            normal zc
-        else 
-            normal zo
-        endif 
-    endif 
-endfunction
-
-nnoremap <silent> <space> :call ToggleFold()<cr>
-
+" function! ToggleFold() 
+"     if foldlevel('.') > 0 
+"         if foldclosed('.') < 0 
+"             normal zc
+"         else 
+"             normal zo
+"         endif 
+"     endif 
+" endfunction
+" 
+" nnoremap <silent> <space> :call ToggleFold()<cr>
+" 
 nnoremap <silent> <leader>s :set spell!<cr>
 
 nnoremap ; :
