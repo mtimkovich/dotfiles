@@ -13,6 +13,8 @@ Bundle 'gmarik/vundle'
 
 " Repos on github
 Bundle 'ervandew/supertab'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
@@ -164,25 +166,35 @@ endif
 let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
 " Set the maximum fold level to 1
-" set foldnestmax=1
+set foldnestmax=1
 " Fold on indents
-" set foldmethod=indent
+set foldmethod=indent
 " All folds open by default
-" autocmd BufRead,BufNewFile * normal zR
+autocmd BufRead,BufEnter * normal zR
 
 " Toggle fold state between closed and opened. 
-" function! ToggleFold() 
-"     if foldlevel('.') > 0 
-"         if foldclosed('.') < 0 
-"             normal zc
-"         else 
-"             normal zo
-"         endif 
-"     endif 
-" endfunction
-" 
-" nnoremap <silent> <space> :call ToggleFold()<cr>
-" 
+function! ToggleFold() 
+    if foldlevel('.') > 0 
+        if foldclosed('.') < 0 
+            normal zc
+        else 
+            normal zo
+        endif 
+    endif 
+endfunction
+
+nnoremap <silent> <space> :call ToggleFold()<cr>
+
+" Toggle spell checking 
 nnoremap <silent> <leader>s :set spell!<cr>
 
+" Select all
+nnoremap <silent> <leader>a ggVG
+
+" Map ; to :
 nnoremap ; :
+
+nnoremap <leader>w :NERDTreeTabsToggle<cr>
+
+nnoremap <C-h> <C-W>w
+

@@ -4,6 +4,7 @@ alias mv='mv -vi'
 alias vim='vim -p'
 alias ..='cd ..'
 alias ls='ls -Ap --color=auto'
+alias ed='ed -p:'
 
 EDITOR=vim
 
