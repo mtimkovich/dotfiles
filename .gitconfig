@@ -1,7 +1,9 @@
 [user]
 	name = Max Timkovich
-	email = mtimkovich@fisoc.com
+	email = mtimkovich@gmail.com
 [color]
 	branch = auto
 	diff = auto
 	status = auto
+[push]
+	default = simple

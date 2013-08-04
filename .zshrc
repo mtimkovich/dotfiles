@@ -221,6 +221,8 @@ alias Rs='sudo pacman -Rs'
 alias Qu='pacman -Qu'
 alias Syud='sudo pacman -Syu --noconfirm; poweroff'
 
+alias fucking='sudo'
+
 # Suffix Aliases
 alias -s png=feh
 alias -s jpg=feh
@@ -266,6 +268,8 @@ alias opera='opera -notrayicon'
 alias vim='vim -p'
 alias clear='clear && fortune && echo ""'
 alias :q='exit'
+alias ed='ed -p:'
+#alias cp='rsync -avP'
 
 mdc() { mkdir -p "$1" && cd "$1" }
 

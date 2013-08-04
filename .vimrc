@@ -172,18 +172,18 @@ set foldmethod=indent
 " All folds open by default
 autocmd BufRead,BufEnter * normal zR
 
-" Toggle fold state between closed and opened. 
-function! ToggleFold() 
-    if foldlevel('.') > 0 
-        if foldclosed('.') < 0 
-            normal zc
-        else 
-            normal zo
-        endif 
-    endif 
-endfunction
-
-nnoremap <silent> <space> :call ToggleFold()<cr>
+" " Toggle fold state between closed and opened. 
+" function! ToggleFold() 
+"     if foldlevel('.') > 0 
+"         if foldclosed('.') < 0 
+"             normal zc
+"         else 
+"             normal zo
+"         endif 
+"     endif 
+" endfunction
+" 
+" nnoremap <silent> <space> :call ToggleFold()<cr>
 
 " Toggle spell checking 
 nnoremap <silent> <leader>s :set spell!<cr>
