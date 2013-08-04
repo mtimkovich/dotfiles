@@ -27,8 +27,6 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'SearchComplete'
 
-filetype on
-filetype plugin on
 filetype plugin indent on
 
 set t_Co=256
