@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use POSIX qw(strftime);
 use feature "say";
 
 sub yesno {
@@ -33,6 +34,10 @@ while (my $file = readdir DH) {
     # Don't prompt if overwriting a symlink
     if (-e $new and not -l $new) {
         next unless yesno "$file exists, overwrite?";
+
+        # Move the file
+        my $time = strftime "%s", localtime;
+        rename $file, "$file.bak.$time"
     }
 
     say "Creating symlink to $file in home directory";
