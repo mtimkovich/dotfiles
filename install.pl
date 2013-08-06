@@ -24,6 +24,7 @@ opendir DH, $ENV{PWD} or die $!;
 while (my $file = readdir DH) {
     next if $file =~ /^\.*$/;
     next if $file =~ /README/;
+    next if $file =~ /LICENSE/;
     next if $file eq ".gitignore";
     next if $file eq ".git";
     next if $0 =~ /$file/;
