@@ -13,6 +13,8 @@ Bundle 'gmarik/vundle'
 
 " Repos on github
 Bundle 'ervandew/supertab'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-markdown'
@@ -26,6 +28,7 @@ Bundle 'mtimkovich/Comment'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'SearchComplete'
+" Bundle 'taglist.vim'
 
 filetype plugin indent on
 
@@ -75,7 +78,7 @@ set autowrite
 set hidden  
 set mouse=a
 set history=1000
-set scrolloff=5
+set scrolloff=20
 set ruler
 set backspace=indent,eol,start
 set shortmess=atI
@@ -125,7 +128,7 @@ nnoremap <C-K> O<Esc>
 com! -range -nargs=* W w !sudo tee %
 
 " FuzzyFinder
-nnoremap <silent> <C-t> :FufFile<CR> 
+nnoremap <silent> <C-f> :FufFile<CR> 
 " Reload Cache
 command -bar R :FufRenewCache
 
@@ -133,7 +136,7 @@ command -bar R :FufRenewCache
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 " Set the make command for different filetypes
-au FileType c set makeprg=gcc\ -g\ -o\ %<\ %
+au FileType c set makeprg=gcc\ -g\ -std=c99\ -o\ %<\ %
 au FileType cpp,cc set makeprg=g++\ -o\ %<\ %
 au FileType java set makeprg=javac\ %
 au FileType coffee set makeprg=coffee\ -c\ %
@@ -196,3 +199,9 @@ nnoremap <leader>w :NERDTreeTabsToggle<cr>
 
 nnoremap <C-h> <C-W>w
 
+let g:easytags_auto_highlight = 0
+
+set tags=./tags;
+let g:easytags_dynamic_files = 2
+
+noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>

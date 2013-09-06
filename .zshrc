@@ -8,19 +8,19 @@ case $TERM in
 	;;
 esac
 
-/usr/bin/fortune -s -n 300
-echo ""
+# /usr/bin/fortune -s -n 300
+# echo ""
 
 autoload -U colors && colors
 
-#PS1="%n@%m %4c %(!.#.$) "
+PS1="%n@%m %4c %(!.#.$) "
 
 #PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
 
 #PS1="%F{blue}%B%m%b%F{blue}[%F{green}%~%F{blue}]%f "
 
 #PS1="%F{blue}[%F{green}%~%F{blue}] $%f "
-PS1="%F{blue}[%F{green}%~%F{blue}] $%f "
+# PS1="%F{blue}[%F{green}%~%F{blue}] $%f "
 #PS1="[%~] $ "
 
 
@@ -171,8 +171,8 @@ export EDITOR=/usr/bin/vim
 # Don't change this to 'pacman-color', stupid
 export PACMAN=pacman
 
-compdef pacman-color=pacman
-compdef absorb=pacman
+#compdef pacman-color=pacman
+#compdef absorb=pacman
 
 ###################
 ##    ALIASES    ##

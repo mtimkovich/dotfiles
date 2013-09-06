@@ -1,0 +1,27 @@
+#!/bin/bash
+# Argument: the homework number
+
+# Edit these variables with your information
+STUDENT_NAME="Max Timkovich"
+UTEID="mt25825"
+CS_LOGIN="mtimkvch"
+EMAIL="$CS_LOGIN@utexas.edu"
+UNIQUE_NUM="53895"
+
+# Do not edit below this line
+HW=$1
+
+if [ -z "$1" ]; then
+    echo "Usage: $0: <hw num>"
+    exit 0
+fi
+
+cat > hw${HW}_${UNIQUE_NUM}_${UTEID}.txt <<EOF
+Homework #: $HW
+Student Name: $STUDENT_NAME
+EID: $UTEID
+CS login: $CS_LOGIN
+Email address: $EMAIL  
+Unique Number: $UNIQUE_NUM
+EOF
+
