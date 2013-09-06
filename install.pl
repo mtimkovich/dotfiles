@@ -38,7 +38,7 @@ while (my $file = readdir DH) {
 
         # Move the file
         my $time = strftime "%s", localtime;
-        rename $file, "$file.bak.$time"
+        rename $new, "$new.bak.$time"
     }
 
     say "Creating symlink to $file in home directory";
