@@ -5,7 +5,7 @@
 STUDENT_NAME="Max Timkovich"
 UTEID="mt25825"
 CS_LOGIN="mtimkvch"
-EMAIL="$CS_LOGIN@utexas.edu"
+EMAIL="$CS_LOGIN@cs.utexas.edu"
 UNIQUE_NUM="53895"
 
 # Do not edit below this line

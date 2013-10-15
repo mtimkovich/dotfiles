@@ -136,7 +136,8 @@ command -bar R :FufRenewCache
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 " Set the make command for different filetypes
-au FileType c set makeprg=gcc\ -g\ -std=c99\ -o\ %<\ %
+"au FileType c set makeprg=gcc\ -g\ -std=c99\ -o\ %<\ %
+au FileType c set makeprg=gcc\ -g\ -o\ %<\ %
 au FileType cpp,cc set makeprg=g++\ -o\ %<\ %
 au FileType java set makeprg=javac\ %
 au FileType coffee set makeprg=coffee\ -c\ %
@@ -199,9 +200,12 @@ nnoremap <leader>w :NERDTreeTabsToggle<cr>
 
 nnoremap <C-h> <C-W>w
 
-let g:easytags_auto_highlight = 0
-
-set tags=./tags;
-let g:easytags_dynamic_files = 2
+" let g:easytags_auto_highlight = 0
+" 
+" set tags=./tags;
+" let g:easytags_dynamic_files = 2
 
 noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+nnoremap <leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
+
