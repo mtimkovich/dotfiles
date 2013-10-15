@@ -13,8 +13,6 @@ Bundle 'gmarik/vundle'
 
 " Repos on github
 Bundle 'ervandew/supertab'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-markdown'
@@ -202,7 +200,7 @@ nnoremap <C-h> <C-W>w
 
 " let g:easytags_auto_highlight = 0
 " 
-" set tags=./tags;
+set tags=./tags;
 " let g:easytags_dynamic_files = 2
 
 noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
