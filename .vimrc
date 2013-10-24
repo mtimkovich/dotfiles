@@ -209,5 +209,7 @@ noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap <leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Buffers
-noremap gn :bn<cr>
-noremap gp :bp<cr>
+noremap <silent> gn :bn<cr>
+noremap <silent> gp :bp<cr>
+" noremap <silent> <leader>b :ls<cr>
+nnoremap <silent> <leader>b :FufBuffer<CR> 
