@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use POSIX qw(strftime);
+use Getopt::Std;
 use feature "say";
 
 sub yesno {
@@ -17,6 +18,25 @@ sub is_folder_empty {
     opendir DH, shift or die $!;
 
     return not grep { not /^\.*$/ } readdir DH;
+}
+
+sub help {
+    say <<EOF;
+Usage: $0 [OPTION]
+Symlink dotfiles to the home folder. Prompts if there are conflicts.
+
+  -i ask before symlinking each file
+  -h display this help and exit
+EOF
+    exit;
+}
+
+my %opts;
+
+getopts("ih", \%opts);
+
+if ($opts{h}) {
+    help;
 }
 
 opendir DH, $ENV{PWD} or die $!;
@@ -41,14 +61,19 @@ while (my $file = readdir DH) {
         rename $new, "$new.bak.$time"
     }
 
-    say "Creating symlink to $file in home directory";
-    symlink $old, $new;
+    if ($opts{i}) {
+        next unless yesno "Symlink $file?";
+
+        say "Creating symlink to $file in home directory";
+        symlink $old, $new;
+    }
 }
 
 closedir DH;
 
-if (is_folder_empty "$ENV{HOME}/.vim/bundle/vundle") {
-    system "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle";
+my $vundle = "$ENV{HOME}/.vim/bundle/vundle";
+if (is_folder_empty $vundle) {
+    system "git clone https://github.com/gmarik/vundle.git $vundle";
 
     say "Installing bundles";
     system "vim +BundleInstall +qall";
