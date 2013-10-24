@@ -208,3 +208,6 @@ noremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " Global replace the word under the cursor
 nnoremap <leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" Buffers
+noremap gn :bn<cr>
+noremap gp :bp<cr>
