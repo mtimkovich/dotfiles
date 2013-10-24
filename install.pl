@@ -25,7 +25,7 @@ sub help {
 Usage: $0 [OPTION]
 Symlink dotfiles to the home folder. Prompts if there are conflicts.
 
-  -i ask before symlinking each file
+  -i ask before symlinking each file (recommended)
   -h display this help and exit
 EOF
     exit;
@@ -63,13 +63,17 @@ while (my $file = readdir DH) {
 
     if ($opts{i}) {
         next unless yesno "Symlink $file?";
-
-        say "Creating symlink to $file in home directory";
-        symlink $old, $new;
     }
+
+    say "Creating symlink to $file in home directory";
+    symlink $old, $new;
 }
 
 closedir DH;
+
+if ($opts{i}) {
+    exit unless yesno "Install vundle and plugins?";
+}
 
 my $vundle = "$ENV{HOME}/.vim/bundle/vundle";
 if (is_folder_empty $vundle) {
