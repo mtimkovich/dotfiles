@@ -21,6 +21,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mtimkovich/JavaRun'
 Bundle 'mtimkovich/Comment'
+Bundle 'mtimkovich/Buffet.vim'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -212,4 +213,4 @@ nnoremap <leader>* :%s/\<<C-r><C-w>\>//g<Left><Left>
 noremap <silent> gn :bn<cr>
 noremap <silent> gp :bp<cr>
 " noremap <silent> <leader>b :ls<cr>
-nnoremap <silent> <leader>b :FufBuffer<CR> 
+nnoremap <silent> <leader>b :Bufferlist<CR> 
