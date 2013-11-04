@@ -164,7 +164,7 @@ if has("persistent_undo")
 endif
 
 " Supertab completion type "Keywords in current file"
-let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
+" let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
 " Set the maximum fold level to 1
 set foldnestmax=1
