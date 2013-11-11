@@ -19,6 +19,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
+Bundle 'jnwhiteh/vim-golang'
 Bundle 'mtimkovich/JavaRun'
 Bundle 'mtimkovich/Comment'
 Bundle 'mtimkovich/Buffet.vim'
@@ -167,11 +168,11 @@ endif
 " let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
 
 " Set the maximum fold level to 1
-set foldnestmax=1
-" Fold on indents
-set foldmethod=indent
-" All folds open by default
-autocmd BufRead,BufEnter * normal zR
+" set foldnestmax=1
+" " Fold on indents
+" set foldmethod=indent
+" " All folds open by default
+" autocmd BufRead,BufEnter * normal zR
 
 " " Toggle fold state between closed and opened. 
 " function! ToggleFold() 
@@ -214,3 +215,5 @@ noremap <silent> gn :bn<cr>
 noremap <silent> gp :bp<cr>
 " noremap <silent> <leader>b :ls<cr>
 nnoremap <silent> <leader>b :Bufferlist<CR> 
+
+let g:buffetbareview = 1
