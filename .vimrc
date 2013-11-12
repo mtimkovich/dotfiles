@@ -20,9 +20,10 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'jnwhiteh/vim-golang'
+
+Bundle 'mtimkovich/Buffet.vim'
 Bundle 'mtimkovich/JavaRun'
 Bundle 'mtimkovich/Comment'
-Bundle 'mtimkovich/Buffet.vim'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -116,6 +117,10 @@ au FileType tex noremap Q gqap
 
 noremap j gj
 noremap k gk
+
+" Quicked movements through files
+noremap J 10j
+noremap K 10k
 
 " Turn off highlighting
 nnoremap <silent> <leader>n :silent :nohlsearch<CR>
