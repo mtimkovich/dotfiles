@@ -16,6 +16,7 @@ Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'tpope/vim-markdown'
+Bundle 'drmingdrmer/xptemplate'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
@@ -150,6 +151,7 @@ au FileType go set makeprg=go\ build\ %
 au FileType fortran set makeprg=gfortran\ -ffree-form\ -o\ %<\ %
 au FileType scala set makeprg=scalac\ %
 au FileType markdown set makeprg=markdown\ %\ >\ /tmp/%.html
+au FileType haskell set makeprg=ghc\ --make\ %<
 
 " Create templates!
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
