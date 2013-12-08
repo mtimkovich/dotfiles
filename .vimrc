@@ -80,7 +80,7 @@ set autowrite
 set hidden  
 set mouse=a
 set history=1000
-set scrolloff=20
+set scrolloff=5
 set ruler
 set backspace=indent,eol,start
 set shortmess=atI
