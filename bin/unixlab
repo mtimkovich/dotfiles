@@ -2,6 +2,9 @@
 import requests
 import re
 
+def remove_tags(html):
+    return re.sub("<[^>]*>", "", html)
+
 url = "http://apps.cs.utexas.edu/unixlabstatus/"
 
 r = requests.get(url)
@@ -14,28 +17,20 @@ html = r.content
 r.close()
 
 stations = []
+lines = html.splitlines()
+
+fields = ["host", "status", "uptime", "users", "load"]
 
 i = 0
-for line in html.splitlines():
-    # Match the rows in the table
-    if "<td style" not in line:
-        continue
+while i < len(lines):
+    if "<td style" in lines[i]:
+        host = {}
 
-    # Remove html tags
-    value = re.sub("<[^>]*>", "", line)
+        for j in range(len(fields)):
+            host[fields[j]] = remove_tags(lines[i+j])
 
-    s_index = i / 5;
-
-    if i % 5 == 0:
-        stations.append({"host": value})
-    elif i % 5 == 1:
-        stations[s_index]["status"] = value
-    elif i % 5 == 2:
-        stations[s_index]["uptime"] = value
-    elif i % 5 == 3:
-        stations[s_index]["users"] = value
-    elif i % 5 == 4:
-        stations[s_index]["load"] = value
+        i += len(fields)
+        stations.append(host)
 
     i += 1
 
@@ -46,5 +41,4 @@ stations = filter(lambda s: s["status"] == "up", stations)
 min_station = min(stations, key=lambda s: s["load"])
 
 print min_station["host"] + ".cs.utexas.edu"
-
 
