@@ -38,7 +38,7 @@ while i < len(lines):
 stations.pop(0)
 
 stations = filter(lambda s: s["status"] == "up", stations)
-min_station = min(stations, key=lambda s: s["load"])
+min_station = min(stations, key=lambda s: float(s["load"]))
 
 print min_station["host"] + ".cs.utexas.edu"
 
