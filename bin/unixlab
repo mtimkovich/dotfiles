@@ -1,56 +1,18 @@
-#!/usr/bin/env perl
-use strict;
-use warnings;
-use 5.012;
-use LWP::UserAgent;
+#!/usr/bin/python2
+import requests
 
-my $url = "http://apps.cs.utexas.edu/unixlabstatus/";
+url = "http://www.cs.utexas.edu/~mtimkvch/unixlabstatus.cgi"
 
-my $ua = LWP::UserAgent->new();
+r = requests.get(url)
 
-my $html = $ua->get($url)->content;
+if not r:
+    print "Error connecting to:", url
 
-die "Cannot connect to $url\n" unless defined $html;
+stations = r.json()
+r.close()
 
-my @lines = split /\n/, $html;
+min_station = min([s for s in stations if s["status"] == "up"], key=lambda s: s["load"])
 
-my @table = grep /<td class="ruptime"/, @lines;
+print min_station["host"] + ".cs.utexas.edu"
 
-my @stations;
-my $station_index = 0;
-
-while (my ($i, $value) = each @table) {
-    $value =~ s#^.*?>(.*)</td>#$1#;
-
-    if ($i % 5 == 0) {
-        $station_index++ unless $i == 0;
-
-        push @stations, {};
-        $stations[$station_index]{host} = $value;
-    } elsif ($i % 5 == 1) {
-        $stations[$station_index]{status} = $value;
-    } elsif ($i % 5 == 2) {
-        $stations[$station_index]{uptime} = $value;
-    } elsif ($i % 5 == 3) {
-        $stations[$station_index]{users} = $value;
-    } elsif ($i % 5 == 4) {
-        $stations[$station_index]{load} = $value;
-    }
-}
-
-# Find machine with lowest load
-my $min_load = $stations[0]{load};
-my $min_index = 0;
-
-while (my ($i, $station) = each @stations) {
-    next if $i == 0;
-    next if $station->{status} eq "down";
-
-    if ($station->{load} <= $min_load) {
-        $min_index = $i;
-        $min_load = $station->{load};
-    }
-}
-
-print "$stations[$min_index]{host}.cs.utexas.edu\n";
 
