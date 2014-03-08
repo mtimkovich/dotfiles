@@ -1,6 +1,10 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 import requests
 import re
+import json
+
+print "Content-type: application/json"
+print
 
 url = "http://apps.cs.utexas.edu/unixlabstatus/"
 
@@ -17,12 +21,11 @@ stations = []
 
 i = 0
 for line in html.splitlines():
-    # Match the rows in the table
     if "<td style" not in line:
         continue
 
-    # Remove html tags
     value = re.sub("<[^>]*>", "", line)
+#     print value
 
     s_index = i / 5;
 
@@ -39,12 +42,6 @@ for line in html.splitlines():
 
     i += 1
 
-# Remove the title row
 stations.pop(0)
-
-stations = filter(lambda s: s["status"] == "up", stations)
-min_station = min(stations, key=lambda s: s["load"])
-
-print min_station["host"] + ".cs.utexas.edu"
-
+print json.dumps(stations)
 
