@@ -120,8 +120,8 @@ noremap j gj
 noremap k gk
 
 " Quicked movements through files
-noremap J 10j
-noremap K 10k
+noremap J <C-U>
+noremap K <C-F>
 
 " Turn off highlighting
 nnoremap <silent> <leader>n :silent :nohlsearch<CR>
