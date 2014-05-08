@@ -37,6 +37,9 @@ while i < len(lines):
 # Remove the title row
 stations.pop(0)
 
+if len(stations) == 0:
+    exit(1)
+
 stations = filter(lambda s: s["status"] == "up", stations)
 min_station = min(stations, key=lambda s: float(s["load"]))
 
