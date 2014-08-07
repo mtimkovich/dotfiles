@@ -37,7 +37,7 @@ while i < len(lines):
 # Remove the title row
 stations.pop(0)
 
-if len(stations) == 0:
+if not stations:
     exit(1)
 
 stations = filter(lambda s: s["status"] == "up", stations)

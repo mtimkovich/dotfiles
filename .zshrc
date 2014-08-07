@@ -72,7 +72,7 @@ zmodload -a zsh/zprof zprof
 zmodload -ap zsh/mapfile mapfile
 
 ## Variables
-PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:/opt/android-sdk/tools"
+PATH="/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:$PATH:$HOME/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/.gem/ruby/2.1.0/bin:/opt/android-sdk/tools"
 manpath=(/usr/local/share/man:/usr/share/man $manpath)
 TZ="US/Central"
 HOSTNAME="`uname -n`"

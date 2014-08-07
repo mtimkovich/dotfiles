@@ -13,10 +13,8 @@ Bundle 'gmarik/vundle'
 
 " Repos on github
 Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-markdown'
-Bundle 'drmingdrmer/xptemplate'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
@@ -24,13 +22,11 @@ Bundle 'jnwhiteh/vim-golang'
 
 Bundle 'mtimkovich/Buffet.vim'
 Bundle 'mtimkovich/JavaRun'
-Bundle 'mtimkovich/Comment'
 
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'SearchComplete'
-" Bundle 'taglist.vim'
 
 filetype plugin indent on
 
