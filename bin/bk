@@ -47,13 +47,13 @@ sub bk {
         $number++;
     }
 
-    if (%$opts{v}) {
+    if ($opts->{v}) {
         say "'$file' -> '$new_name'";
     }
 
     my $r;
 
-    if (%$opts{r}) {
+    if ($opts->{r}) {
         $r = rcopy $file, $new_name;
     } else {
         $r = copy $file, $new_name;
@@ -78,11 +78,11 @@ sub unbk {
 
     (my $original_file = $file) =~ s/$backup_suffix//;
 
-    if (%$opts{v}) {
+    if ($opts->{v}) {
         say "'$file' -> '$original_file'";
     }
 
-    if (-f $original_file and %$opts{i} and
+    if (-f $original_file and $opts->{i} and
         not confirm "$0: overwrite '$file'?") {
 
         return;
