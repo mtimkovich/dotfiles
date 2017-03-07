@@ -47,7 +47,7 @@ while (my $file = readdir DH) {
     next if $file =~ /LICENSE/;
     next if $file eq ".gitignore";
     next if $file eq ".git";
-    next if $0 =~ /$file/;
+    next if $file eq $0;
 
     my $old = "$ENV{PWD}/$file";
     my $new = "$ENV{HOME}/$file";

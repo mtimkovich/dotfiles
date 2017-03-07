@@ -246,10 +246,6 @@ alias alysa='mplayer http://kanm5.tamu.edu:4040'
 alias wcd='wicd-curses'
 alias am='alsamixer'
 
-alias webcam='mplayer tv:// -tv driver=v4l2:device=/dev/video0'
-alias btmouse='sudo hidd -i hci0 --connect 00:1F:20:1C:B7:DF'
-alias school="'cp' -urv ~/School ~/Dropbox"
-
 # alias fun
 alias rename='perl-rename'
 alias ssed='perl -pe'

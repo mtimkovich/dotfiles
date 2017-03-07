@@ -1,1 +1,0 @@
-./Mustang_Vim_Colorscheme_by_hcalves.vim
