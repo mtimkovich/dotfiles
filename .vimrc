@@ -7,8 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'wincent/command-t'
-Plugin 'mtimkovich/command-t'
+Plugin 'wincent/command-t'
 Plugin 'tpope/vim-commentary'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'ervandew/supertab'
