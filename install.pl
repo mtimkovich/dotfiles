@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use POSIX qw(strftime);
+use File::Path qw(make_path);
 use Getopt::Std;
 use feature "say";
 
@@ -47,7 +48,7 @@ while (my $file = readdir DH) {
     next if $file =~ /LICENSE/;
     next if $file eq ".gitignore";
     next if $file eq ".git";
-    next if $file eq $0;
+    next if $file eq "index.pl";
 
     my $old = "$ENV{PWD}/$file";
     my $new = "$ENV{HOME}/$file";
@@ -75,11 +76,11 @@ if ($opts{i}) {
     exit unless yesno "Install vundle and plugins?";
 }
 
-my $vundle = "$ENV{HOME}/.vim/bundle/vundle";
+my $vundle = "$ENV{HOME}/.vim/bundle/Vundle.vim";
+make_path $vundle;
 if (is_folder_empty $vundle) {
-    system "git clone https://github.com/gmarik/vundle.git $vundle";
+    system "git clone https://github.com/VundleVim/Vundle.vim.git $vundle";
 
     say "Installing bundles";
-    system "vim +BundleInstall +qall";
+    system "vim +PluginInstall +qall";
 }
-
