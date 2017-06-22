@@ -12,7 +12,7 @@ sub yesno {
     print "$prompt [Y/n] ";
     chomp($_ = <>);
 
-    /y/i;
+    /^y$/i;
 }
 
 sub is_folder_empty {
@@ -40,16 +40,17 @@ if ($opts{h}) {
     help;
 }
 
-opendir DH, $ENV{PWD} or die $!;
+# Dot files to install
+my @DOTS = qw(
+    .vimrc
+    .bashrc
+    .zshrc
+    bin
+);
 
-while (my $file = readdir DH) {
-    next if $file =~ /^\.*$/;
-    next if $file =~ /README/;
-    next if $file =~ /LICENSE/;
-    next if $file eq ".gitignore";
-    next if $file eq ".git";
-    next if $file eq "index.pl";
+my $time = strftime "%s", localtime;
 
+for my $file (@DOTS) {
     my $old = "$ENV{PWD}/$file";
     my $new = "$ENV{HOME}/$file";
 
@@ -58,7 +59,6 @@ while (my $file = readdir DH) {
         next unless yesno "$file exists, overwrite?";
 
         # Move the file
-        my $time = strftime "%s", localtime;
         rename $new, "$new.bak.$time"
     }
 
@@ -70,8 +70,7 @@ while (my $file = readdir DH) {
     symlink $old, $new;
 }
 
-closedir DH;
-
+# Install vundle
 if ($opts{i}) {
     exit unless yesno "Install vundle and plugins?";
 }
