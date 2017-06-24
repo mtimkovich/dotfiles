@@ -4,6 +4,7 @@ import os
 import subprocess
 import time
 
+# These are the dotfiles that will be symlinked
 DOTS = [
     '.vimrc',
     '.zshrc',
@@ -33,10 +34,10 @@ def symlink_dotfiles():
         link = os.path.join(os.environ['HOME'], fn)
 
         if os.path.exists(link) and not os.path.islink(link):
-            if args.interactive and confirm(fn + ' exists, override?'):
-                os.rename(link, link + '.bak.' + ts)
-            else:
+            if args.interactive and not confirm(fn + ' exists, override?'):
                 continue
+
+            os.rename(link, link + '.bak.' + ts)
 
         if args.verbose:
             print old, '->', link
@@ -50,10 +51,12 @@ def symlink_dotfiles():
 
 def install_vundle():
     vundle = os.path.join(os.environ['HOME'], '.vim/bundle/Vundle.vim')
-    subprocess.call('git clone https://github.com/VundleVim/Vundle.vim.git ' + vundle, shell=True)
 
-    if args.verbose:
-        print "Installing bundles"
+    # check if the directory is empty
+    if not os.path.isdir(vundle) or os.listdir(vundle):
+        return
+
+    subprocess.call('git clone https://github.com/VundleVim/Vundle.vim.git ' + vundle, shell=True)
     subprocess.call('vim +PluginInstall +qall', shell=True)
 
 symlink_dotfiles()
