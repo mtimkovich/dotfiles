@@ -50,14 +50,14 @@ def symlink_dotfiles():
 
 
 def install_vundle():
-    vundle = os.path.join(os.environ['HOME'], '.vim/bundle/Vundle.vim')
+    vundle = os.path.join(os.environ['HOME'], '.vim', 'bundle', 'Vundle.vim')
 
     # check if the directory is empty
     if not os.path.isdir(vundle) or os.listdir(vundle):
         return
 
-    subprocess.call('git clone https://github.com/VundleVim/Vundle.vim.git ' + vundle, shell=True)
-    subprocess.call('vim +PluginInstall +qall', shell=True)
+    subprocess.call(['git', 'clone', 'https://github.com/VundleVim/Vundle.vim.git', vundle])
+    subprocess.call(['vim', '+PluginInstall', '+qall'])
 
 symlink_dotfiles()
 
