@@ -11,7 +11,10 @@ Plugin 'wincent/command-t'
 Plugin 'tpope/vim-commentary'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'ervandew/supertab'
+
+" Colors
 Plugin 'croaker/mustang-vim'
+Plugin 'vim-scripts/ibmedit.vim'
 
 call vundle#end()
 filetype plugin indent on
