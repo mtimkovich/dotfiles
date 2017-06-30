@@ -24,6 +24,7 @@ colors mustang
 set ignorecase
 set smartcase
 set number
+set relativenumber
 set incsearch
 set hlsearch
 set linebreak
@@ -69,3 +70,5 @@ command Run call Run()
 nnoremap <leader>r :Run<CR>
 nnoremap <silent> <leader>c :call asyncrun#quickfix_toggle(8)<CR>
 
+autocmd InsertEnter * :set nornu
+autocmd InsertLeave * :set rnu
