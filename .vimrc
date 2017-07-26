@@ -11,6 +11,7 @@ Plugin 'wincent/command-t'
 Plugin 'tpope/vim-commentary'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'ervandew/supertab'
+Plugin 'jiangmiao/auto-pairs'
 
 " Colors
 Plugin 'croaker/mustang-vim'
@@ -24,6 +25,7 @@ colors mustang
 set ignorecase
 set smartcase
 set number
+set relativenumber
 set incsearch
 set hlsearch
 set linebreak
@@ -68,4 +70,3 @@ endfunction
 command Run call Run()
 nnoremap <leader>r :Run<CR>
 nnoremap <silent> <leader>c :call asyncrun#quickfix_toggle(8)<CR>
-
