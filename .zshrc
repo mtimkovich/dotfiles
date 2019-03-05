@@ -1,39 +1,35 @@
 ########################
-#      zshrc file      # 
+#      zshrc file      #
 ########################
 
 case $TERM in
-	xterm*|*rxvt*)
-	precmd () {print -Pn "\e]0;%~\a"}
-	;;
+    xterm*|*rxvt*)
+    precmd () {print -Pn "\e]0;%~\a"}
+    ;;
 esac
-
-# /usr/bin/fortune -s -n 300
-# echo ""
 
 autoload -U colors && colors
 
-PS1="%n@%m %4c %(!.#.$) "
+PS1="%n@%m %1~ %(!.#.$) "
 
-#PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
-
-#PS1="%F{blue}%B%m%b%F{blue}[%F{green}%~%F{blue}]%f "
-
-#PS1="%F{blue}[%F{green}%~%F{blue}] $%f "
-# PS1="%F{blue}[%F{green}%~%F{blue}] $%f "
-#PS1="[%~] $ "
-
-
-#PS1="%F{blue}%m %F{green}%~ %F{blue}$%f "
-#PS1="%F{green}%~ %F{blue}$%f "
-#PS1="%F{green}%~%f $ "
-#PS1="%m[%~] "
-
-
-#PS1="%{$bold_color$fg[blue]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} "
-
-## If not running interactively, do nothing 
+## If not running interactively, do nothing
 [ -z "$PS1" ] && return
+
+alias openthisdir='xdg-open .'
+alias toclip='xclip -selection c'
+
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias ..='cd ..'
+alias ls='ls -Ap --color=auto'
+
+fpath=(~/.zsh $fpath)
+
+EDITOR=vim
+VISUAL=vim
+
+source ~/.local/bin/bashmarks.sh
 
 ## load zsh modules
 autoload -U compinit promptinit zcalc zsh-mime-setup
@@ -54,8 +50,18 @@ setopt NO_CASE_GLOB
 setopt NUMERIC_GLOB_SORT
 setopt EXTENDED_GLOB
 setopt IGNORE_EOF
-setopt MENUCOMPLETE
+setopt BASH_AUTOLIST
+setopt NO_MENU_COMPLETE
 setopt ALL_EXPORT
+
+zstyle ':completion:*' menu select=1
+zmodload zsh/complist
+
+# use the vi navigation keys in menu completion
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 setopt   notify globdots correct pushdtohome cdablevars autolist
 setopt   correctall autocd recexact longlistjobs
@@ -233,39 +239,7 @@ alias -s avi=mplayer
 alias -s sh=sh
 alias -s pdf=epdfview
 
-#alias ping='ping -c 3'
-alias phpsh='phpsh -C'
-alias fehbg='feh --bg-scale'
-alias scrot='scrot -cd 5 -q 100'
-alias x='xinit'
-alias alisa='alsamixer'
-alias amani='acpi'
-alias qalc='qalc 2>/dev/null'
-alias alysa='mplayer http://kanm5.tamu.edu:4040'
-
-alias wcd='wicd-curses'
-alias am='alsamixer'
-
-# alias fun
-alias rename='perl-rename'
-alias ssed='perl -pe'
-alias pl='perl'
-alias ls='ls --color=auto -Ap'
-alias mc='mc -u'
-alias pseudo='sudo'
-alias fu="exit"
-alias fuck="exit"
-#alias shutdown='~/shutdown.sh'
-alias hon='~/shutdown.sh'
-alias mplaya='mplayer'
-alias gmail='elinks mail.google.com/mail/h/'
-alias soundconverter='soundconverter -b -m audio/mpeg -s .mp3 *'
-alias opera='opera -notrayicon'
-# alias vim='vim -p'
-alias clear='clear && fortune && echo ""'
 alias :q='exit'
-alias ed='ed -p:'
-#alias cp='rsync -avP'
 
 mdc() { mkdir -p "$1" && cd "$1" }
 
@@ -388,7 +362,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}'
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
-zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+# zstyle ':completion:*' menu select=10 _complete _ignored _approximate
 
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 
@@ -413,18 +387,3 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # Ignore binary files and class files
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.(o|class)'
-
-
-# Automatically start up X if in tty1
-# if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
-#     startx
-# else
-#    /usr/bin/fortune
-#    echo ""
-# fi
-
-export PERL_LOCAL_LIB_ROOT="/home/max/perl5";
-export PERL_MB_OPT="--install_base /home/max/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/max/perl5";
-export PERL5LIB="/home/max/perl5/lib/perl5/x86_64-linux-thread-multi:/home/max/perl5/lib/perl5";
-export PATH="/home/max/perl5/bin:$PATH";
