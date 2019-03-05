@@ -87,3 +87,6 @@ noremap <leader>y "+y
 " Put yanked text
 noremap <leader>p "0p
 noremap <leader>P "0P
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/

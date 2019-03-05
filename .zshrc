@@ -1,19 +1,24 @@
 ########################
-#      zshrc file      #
+#      zshrc file      # 
 ########################
 
 case $TERM in
-    xterm*|*rxvt*)
-    precmd () {print -Pn "\e]0;%~\a"}
-    ;;
+	xterm*|*rxvt*)
+	precmd () {print -Pn "\e]0;%~\a"}
+	;;
 esac
 
 autoload -U colors && colors
 
 PS1="%n@%m %1~ %(!.#.$) "
 
-## If not running interactively, do nothing
+## If not running interactively, do nothing 
 [ -z "$PS1" ] && return
+
+export SRC_DIR="/usr/local/google/home/timkovich/chromiumos/src"
+alias crosdl='$SRC_DIR/platform/crostestutils/provingground/crosdl.py'
+alias crosdlc='$SRC_DIR/platform/crostestutils/provingground/crosdl.py --to_stick /dev/sda'
+alias crosdlip='$SRC_DIR/platform/crostestutils/provingground/crosdl.py --to_ip'
 
 alias openthisdir='xdg-open .'
 alias toclip='xclip -selection c'
@@ -25,6 +30,8 @@ alias ..='cd ..'
 alias ls='ls -Ap --color=auto'
 
 fpath=(~/.zsh $fpath)
+
+PATH=$PATH:~/depot_tools:/usr/local/google/gsutil
 
 EDITOR=vim
 VISUAL=vim
