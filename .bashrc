@@ -6,13 +6,17 @@ alias mv='mv -vi'
 alias ..='cd ..'
 alias ls='ls -Ap --color=auto'
 
+PATH=$(yarn global bin):$PATH
+
 EDITOR=vim
 
 mdc() { mkdir -p "$1"; cd "$1"; }
- 
+
 up() { for i in $(seq 1 "$1"); do cd ..; done }
 
-extract() 
+rustrun() { rustc $1 && ./$(basename $1 .rs); }
+
+extract()
 {
      if [ -f $1 ] ; then
          case $1 in
@@ -34,4 +38,3 @@ extract()
          echo "'$1' is not a valid file"
      fi
 }
-

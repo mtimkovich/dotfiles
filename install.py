@@ -4,14 +4,6 @@ import os
 import subprocess
 import time
 
-# These are the dotfiles that will be symlinked
-DOTS = [
-    '.vimrc',
-    '.zshrc',
-    '.bashrc',
-    'bin',
-]
-
 parser = argparse.ArgumentParser('dotfile installer')
 parser.add_argument('-i', '--interactive', action='store_true',
                     help='prompt before overriding (recommended)')
@@ -23,13 +15,13 @@ args = parser.parse_args()
 
 
 def confirm(prompt):
-    return raw_input(prompt + ' [Y/n] ').lower() == 'y'
+    return input(prompt + ' [Y/n] ').lower() == 'y'
 
 
-def symlink_dotfiles():
+def symlink_dotfiles(dots):
     ts = str(int(time.time()))
 
-    for fn in DOTS:
+    for fn in dots:
         old = os.path.join(os.getcwd(), fn)
         link = os.path.join(os.environ['HOME'], fn)
 
@@ -59,7 +51,15 @@ def install_vundle():
     subprocess.call(['git', 'clone', 'https://github.com/VundleVim/Vundle.vim.git', vundle])
     subprocess.call(['vim', '+PluginInstall', '+qall'])
 
-symlink_dotfiles()
+# These are the dotfiles that will be symlinked
+dots = [
+    '.bashrc',
+    '.config',
+    '.vimrc',
+    'bin',
+]
+
+symlink_dotfiles(dots)
 
 if args.vundle:
     install_vundle()

@@ -10,19 +10,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'wincent/command-t'
 Plugin 'tpope/vim-commentary'
 Bundle 'wellle/targets.vim'
+Bundle 'posva/vim-vue'
+Bundle 'ervandew/supertab'
+Bundle 'tmhedberg/matchit'
+Bundle 'rust-lang/rust.vim'
 
 " Colors
 Plugin 'croaker/mustang-vim'
 Plugin 'vim-scripts/ibmedit.vim'
-
-" Google
-source /usr/share/vim/google/google.vim
-" Glaze
-Glug codefmt gofmt_executable="goimports"
-Glug codefmt-google
-autocmd FileType go AutoFormatBuffer gofmt
-Glug blazedeps auto_filetypes=`['go']`
-Glug youcompleteme-google
 
 call vundle#end()
 filetype plugin indent on
@@ -46,6 +41,7 @@ set ruler
 set backspace=indent,eol,start
 set colorcolumn=80
 autocmd FileType go set colorcolumn=101
+autocmd FileType vue set shiftwidth=2
 let mapleader=','
 
 nnoremap <silent> <leader>n :nohlsearch<CR>
