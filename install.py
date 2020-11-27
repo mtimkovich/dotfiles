@@ -32,7 +32,7 @@ def symlink_dotfiles(dots):
             os.rename(link, link + '.bak.' + ts)
 
         if args.verbose:
-            print old, '->', link
+            print(old, '->', link)
 
         # Ha
         if os.path.islink(link):

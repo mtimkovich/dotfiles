@@ -14,7 +14,7 @@ bind \cf accept-autosuggestion execute
 alias rm='rm -vi'
 alias cp='cp -vi'
 alias mv='mv -vi'
-alias ls='ls -A --color=auto'
+alias ls='ls -Ap --color=auto'
 alias ..='cd ..'
 alias :q='exit'
 alias grep='grep -s'
@@ -30,13 +30,13 @@ alias tk='tmux kill-session -t'
 alias tn='tmux new -s'
 
 # Functions
-function up
+function up -d 'cd .. n times'
     for i in (seq 1 $argv)
         cd ..
     end
 end
 
-function mdc
+function mdc -d 'mkdir && cd'
     mkdir -p $argv
     cd $argv
 end
@@ -47,4 +47,9 @@ function prompt_dir
     else
         echo -n (basename $PWD)
     end
+end
+
+function rustrun -d 'Compile and run a Rust program'
+    rustc $argv
+    and eval ./(basename -s .rs $argv)
 end
