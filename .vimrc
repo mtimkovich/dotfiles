@@ -14,6 +14,8 @@ Bundle 'posva/vim-vue'
 Bundle 'ervandew/supertab'
 Bundle 'tmhedberg/matchit'
 Bundle 'rust-lang/rust.vim'
+Bundle 'vim-python/python-syntax'
+Bundle 'tpope/vim-surround'
 
 " Colors
 Plugin 'croaker/mustang-vim'
@@ -40,17 +42,23 @@ set scrolloff=5
 set ruler
 set backspace=indent,eol,start
 set colorcolumn=80
-autocmd FileType go set colorcolumn=101
+autocmd FileType go,rust,markdown set colorcolumn=101
 autocmd FileType vue set shiftwidth=2
 let mapleader=','
 
 nnoremap <silent> <leader>n :nohlsearch<CR>
+nnoremap / /\v
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 vnoremap . :normal .<CR>
 vnoremap @ :normal @
+noremap <tab> %
 
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<left><left>
 
@@ -86,3 +94,11 @@ noremap <leader>P "0P
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+noremap <silent> <space> :Commentary<cr>
+
+" Language specific settings
+augroup golang
+    au!
+    au FileType go set noexpandtab
+augroup END

@@ -1,4 +1,4 @@
-set PATH $PATH ~/bin ~/.local/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin
 
 function fish_prompt
     echo -n $USER@(hostname) ''

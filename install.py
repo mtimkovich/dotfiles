@@ -44,17 +44,14 @@ def symlink_dotfiles(dots):
 def install_vundle():
     vundle = os.path.join(os.environ['HOME'], '.vim', 'bundle', 'Vundle.vim')
 
-    # check if the directory is empty
-    if not os.path.isdir(vundle) or os.listdir(vundle):
-        return
-
     subprocess.call(['git', 'clone', 'https://github.com/VundleVim/Vundle.vim.git', vundle])
     subprocess.call(['vim', '+PluginInstall', '+qall'])
 
-# These are the dotfiles that will be symlinked
+# These are the dotfiles to be symlinked.
 dots = [
     '.bashrc',
     '.config',
+    '.tmux.conf',
     '.vimrc',
     'bin',
 ]
