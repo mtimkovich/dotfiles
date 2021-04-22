@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+import sys
+
+if len(sys.argv) < 2:
+    print("Mathematics includes the study of such topics as quantity, structure, space, and change.")
+    sys.exit(1)
+
+print(eval(' '.join(sys.argv[1:])))

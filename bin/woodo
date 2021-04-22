@@ -5,7 +5,6 @@ if os.geteuid() != 0:
     print("It's a weird tree.")
 else:
     print(r"""
-             _              __
             / `\  (~._    ./  )
             \__/ __`-_\__/ ./
            _ \ \/  \   \ |_   __
