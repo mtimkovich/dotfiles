@@ -1,6 +1,12 @@
 set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go/bin
 
+bind \ce accept-autosuggestion
 bind \cf accept-autosuggestion execute
+
+# vi mode
+fish_vi_key_bindings
+bind -M insert \cf accept-autosuggestion execute
+bind -M insert \ce accept-autosuggestion
 
 set GOPRIVATE "github.com/Bestowinc/*"
 set -x FZF_DEFAULT_OPTS '
@@ -12,13 +18,12 @@ set -x FZF_DEFAULT_OPTS '
 bind \ct __fzf_search_current_dir
 
 # Aliases
-alias rm 'rm -vi'
-alias cp 'cp -vi'
-alias mv 'mv -vi'
+alias rm 'rm -v'
+alias cp 'renamer -y -c "cp -r"'
+alias mv 'renamer -y'
 alias ls 'ls -ApG'
 alias .. 'cd ..'
 alias :q 'exit'
-alias grep 'grep -s'
 alias please 'sudo'
 alias python 'python3'
 alias pip 'pip3'
@@ -67,7 +72,8 @@ function proj_root -d "root of git project else the current dir"
   echo $base
 end
 
-alias v 'fd . (proj_root) | fzf --print0 | xargs -0 -o nvim'
+alias v 'fd -H . (proj_root) | fzf --print0 | xargs -0 -o nvim'
+alias c 'cd (fd -td | fzf)'
 
 function rg -d "automatically pipe rg to bat"
   if [ -t 1 ]
@@ -79,3 +85,6 @@ end
 
 source /usr/local/opt/asdf/asdf.fish
 source (brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+
+# Load fishmarks (http://github.com/techwizrd/fishmarks)
+. $HOME/.fishmarks/marks.fish

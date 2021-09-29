@@ -35,13 +35,18 @@ set ignorecase
 set linebreak
 set mouse=a
 set number
+
 set relativenumber
+au! InsertLeave * set relativenumber
+au! InsertEnter * set relativenumber!
+
 set scrolloff=5
 set smartcase
 set tabstop=4
 set shiftwidth=4
 set expandtab
-autocmd FileType sh set sw=2
+set noswapfile
+autocmd FileType sh,dosini,json set sw=2
 " set colorcolumn=80
 " autocmd FileType go,rust,markdown set colorcolumn=
 " autocmd FileType vue set shiftwidth=2
@@ -49,8 +54,6 @@ let mapleader=','
 
 nnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap ; :
-nnoremap j gj
-nnoremap k gk
 noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
@@ -58,9 +61,11 @@ noremap <right> <nop>
 
 vnoremap . :normal .<CR>
 vnoremap @ :normal @
-noremap <tab> %
+noremap Q @q
 
-nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<left><left>
+" nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<left><left>
+vnoremap <leader>* "hy:%s#<C-r>h##g<left><left>
+
 
 setlocal completeopt-=preview
 
@@ -73,8 +78,7 @@ inoremap \fn <C-R>=expand("%:t:r")<CR>
 
 nnoremap <silent> <leader>t :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-" buffer switching
-" nnoremap <leader>b :set nomore <Bar> :ls <Bar> :set more <CR>:b<Space>
+nnoremap <silent> <leader>r :Rg<CR>
 
 " Map _ to beginning of line
 noremap _ ^
@@ -91,7 +95,7 @@ match ExtraWhitespace /\s\+$/
 
 " Commentary
 noremap <silent> <space> :Commentary<cr>
-autocmd FileType dosini setlocal commentstring=#\ %s
+autocmd FileType hcl setlocal commentstring=#\ %s
 
 " Language specific settings
 augroup golang
@@ -101,3 +105,5 @@ augroup END
 
 " Config syntax highlighting.
 autocmd BufEnter,BufRead *.conf,*.toml setf dosini
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
