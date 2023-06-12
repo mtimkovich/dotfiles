@@ -3,7 +3,7 @@ call plug#begin(stdpath('config') . '/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'ervandew/supertab'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -25,7 +25,7 @@ Plug 'vim-scripts/ibmedit.vim'
 call plug#end()
 filetype plugin indent on
 
-colors nord
+colors mustang
 
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ruby_host_prog = '/usr/local/lib/ruby/gems/3.0.0/bin/neovim-ruby-host'
@@ -47,6 +47,7 @@ set shiftwidth=4
 set expandtab
 set noswapfile
 autocmd FileType sh,dosini,json set sw=2
+autocmd BufRead,BufNewFile *.star setf python
 " set colorcolumn=80
 " autocmd FileType go,rust,markdown set colorcolumn=
 " autocmd FileType vue set shiftwidth=2
@@ -65,7 +66,6 @@ noremap Q @q
 
 " nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<left><left>
 vnoremap <leader>* "hy:%s#<C-r>h##g<left><left>
-
 
 setlocal completeopt-=preview
 
@@ -105,5 +105,6 @@ augroup END
 
 " Config syntax highlighting.
 autocmd BufEnter,BufRead *.conf,*.toml setf dosini
+autocmd BufEnter,BufRead *.star setf python
 
 let g:SuperTabDefaultCompletionType = "<c-n>"

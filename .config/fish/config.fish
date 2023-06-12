@@ -1,14 +1,18 @@
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go/bin /snap/bin
 
 bind \ce accept-autosuggestion
 bind \cf accept-autosuggestion execute
+
+bind \cp history-search-backward
+bind \cn history-search-forward
 
 # vi mode
 fish_vi_key_bindings
 bind -M insert \cf accept-autosuggestion execute
 bind -M insert \ce accept-autosuggestion
+bind -M insert \cp history-search-backward
+bind -M insert \cn history-search-forward
 
-set GOPRIVATE "github.com/Bestowinc/*"
 set -x FZF_DEFAULT_OPTS '
     --height 40% --reverse --border
     --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
@@ -19,9 +23,9 @@ bind \ct __fzf_search_current_dir
 
 # Aliases
 alias rm 'rm -v'
-alias cp 'renamer -y -c "cp -r"'
-alias mv 'renamer -y'
-alias ls 'ls -ApG'
+alias cp 'renamer -fy -c "cp -r"'
+alias mv 'renamer -fy'
+alias ls 'ls -ApG --color'
 alias .. 'cd ..'
 alias :q 'exit'
 alias please 'sudo'
@@ -75,16 +79,5 @@ end
 alias v 'fd -H . (proj_root) | fzf --print0 | xargs -0 -o nvim'
 alias c 'cd (fd -td | fzf)'
 
-function rg -d "automatically pipe rg to bat"
-  if [ -t 1 ]
-    command rg -p $argv | bat
-  else
-    command rg $argv
-  end
-end
-
-source /usr/local/opt/asdf/asdf.fish
-source (brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
-
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
-. $HOME/.fishmarks/marks.fish
+# . $HOME/.fishmarks/marks.fish
