@@ -90,6 +90,9 @@ noremap <leader>y "+y
 noremap <leader>p "0p
 noremap <leader>P "0P
 
+" Toggle spellcheck
+noremap <silent> <leader>s :set spell!<CR>
+
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 

@@ -9,8 +9,6 @@ parser.add_argument('-i', '--interactive', action='store_true',
                     help='prompt before overriding (recommended)')
 parser.add_argument('-v', '--verbose', action='store_true',
                     help='verbose output')
-parser.add_argument('--vundle', action='store_true',
-                    help='install vundle plugins')
 args = parser.parse_args()
 
 
@@ -40,13 +38,6 @@ def symlink_dotfiles(dots):
 
         os.symlink(old, link)
 
-
-def install_vundle():
-    vundle = os.path.join(os.environ['HOME'], '.vim', 'bundle', 'Vundle.vim')
-
-    subprocess.call(['git', 'clone', 'https://github.com/VundleVim/Vundle.vim.git', vundle])
-    subprocess.call(['vim', '+PluginInstall', '+qall'])
-
 # These are the dotfiles to be symlinked.
 dots = [
     '.bashrc',
@@ -57,6 +48,3 @@ dots = [
 ]
 
 symlink_dotfiles(dots)
-
-if args.vundle:
-    install_vundle()
