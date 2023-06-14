@@ -53,6 +53,9 @@ autocmd BufRead,BufNewFile *.star setf python
 " autocmd FileType vue set shiftwidth=2
 let mapleader=','
 
+noremap j gj
+noremap k gk
+
 nnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap ; :
 noremap <up> <nop>
@@ -93,8 +96,9 @@ noremap <leader>P "0P
 " Toggle spellcheck
 noremap <silent> <leader>s :set spell!<CR>
 
+" Highlight training whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+match ExtraWhitespace /\s\+\%#\@<!$/
 
 " Commentary
 noremap <silent> <space> :Commentary<cr>
