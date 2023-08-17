@@ -1,4 +1,4 @@
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go/bin /snap/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go /snap/bin
 
 bind \ce accept-autosuggestion
 bind \cf accept-autosuggestion execute
@@ -33,6 +33,7 @@ alias python 'python3'
 alias pip 'pip3'
 alias vim 'nvim'
 alias ports 'lsof -i -P -n | grep LISTEN'
+alias fm 'vifm'
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t 'tmux attach || tmux new-session'

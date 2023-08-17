@@ -13,7 +13,7 @@ args = parser.parse_args()
 
 
 def confirm(prompt):
-    return input(prompt + ' [Y/n] ').lower() == 'y'
+    return input(f'{prompt} [Y/n] ').lower() == 'y'
 
 
 def symlink_dotfiles(dots):

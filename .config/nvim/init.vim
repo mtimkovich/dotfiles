@@ -1,21 +1,17 @@
 call plug#begin(stdpath('config') . '/plugged')
 
 Plug 'airblade/vim-rooter'
+Plug 'atweiden/vim-fennel'
 Plug 'dag/vim-fish'
 Plug 'ervandew/supertab'
-" Plug 'fatih/vim-go'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jvirtanen/vim-hcl'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'posva/vim-vue'
 Plug 'rust-lang/rust.vim'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
 Plug 'vim-python/python-syntax'
-Plug 'wellle/targets.vim'
 
 " Colors
 Plug 'arcticicestudio/nord-vim'
@@ -31,6 +27,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ruby_host_prog = '/usr/local/lib/ruby/gems/3.0.0/bin/neovim-ruby-host'
 
 set hidden
+
 set ignorecase
 set linebreak
 set mouse=a
@@ -53,8 +50,8 @@ autocmd BufRead,BufNewFile *.star setf python
 " autocmd FileType vue set shiftwidth=2
 let mapleader=','
 
-noremap j gj
-noremap k gk
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
 
 nnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap ; :
@@ -96,7 +93,7 @@ noremap <leader>P "0P
 " Toggle spellcheck
 noremap <silent> <leader>s :set spell!<CR>
 
-" Highlight training whitespace
+" Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/
 
@@ -115,3 +112,6 @@ autocmd BufEnter,BufRead *.conf,*.toml setf dosini
 autocmd BufEnter,BufRead *.star setf python
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Rust fmt on save
+autocmd BufWritePost *.rs silent! :!cargo fmt
