@@ -1,3 +1,5 @@
+set guifont=JetBrains\ Mono\:h11
+
 call plug#begin(stdpath('config') . '/plugged')
 
 Plug 'airblade/vim-rooter'
@@ -7,11 +9,11 @@ Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jvirtanen/vim-hcl'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
 Plug 'vim-python/python-syntax'
+Plug 'rainbowhxch/accelerated-jk.nvim'
 
 " Colors
 Plug 'arcticicestudio/nord-vim'
@@ -53,6 +55,16 @@ let mapleader=','
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
+if has_key(plugs, 'accelerated-jk.nvim')
+    lua << EOF
+    require('accelerated-jk').setup({
+        acceleration_table = { 12, 17, 21, 24, 26, 28, 30 }
+    })
+EOF
+    nnoremap j <Plug>(accelerated_jk_gj)
+    nnoremap k <Plug>(accelerated_jk_gk)
+endif
+
 nnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap ; :
 noremap <up> <nop>
@@ -63,9 +75,6 @@ noremap <right> <nop>
 vnoremap . :normal .<CR>
 vnoremap @ :normal @
 noremap Q @q
-
-" nnoremap <Leader>* :%s/\<<C-r><C-w>\>//g<left><left>
-vnoremap <leader>* "hy:%s#<C-r>h##g<left><left>
 
 setlocal completeopt-=preview
 
@@ -85,6 +94,9 @@ noremap _ ^
 
 " Yank to system clipboard
 noremap <leader>y "+y
+
+" Put system clipboard
+inoremap <c-s-v> <c-r>+
 
 " Put yanked text
 noremap <leader>p "0p
