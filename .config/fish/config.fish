@@ -77,7 +77,7 @@ function proj_root -d "root of git project else the current dir"
   echo $base
 end
 
-alias v 'fd -H . (proj_root) | fzf --print0 | xargs -0 -o nvim'
+alias v 'vim (fzf)'
 alias c 'cd (fd -td | fzf)'
 
 # Load fishmarks (http://github.com/techwizrd/fishmarks)

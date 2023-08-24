@@ -14,6 +14,8 @@ Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
 Plug 'vim-python/python-syntax'
 Plug 'rainbowhxch/accelerated-jk.nvim'
+Plug 'svermeulen/vim-cutlass'
+Plug 'svermeulen/vim-yoink'
 
 " Colors
 Plug 'arcticicestudio/nord-vim'
@@ -55,15 +57,28 @@ let mapleader=','
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
-if has_key(plugs, 'accelerated-jk.nvim')
-    lua << EOF
-    require('accelerated-jk').setup({
-        acceleration_table = { 12, 17, 21, 24, 26, 28, 30 }
-    })
+lua << EOF
+require("accelerated-jk").setup({
+    acceleration_table = { 12,17,21,24,26,28,30 },
+    acceleration_motions = {'w', 'b', 'e', '\\<c-d>', '\\<c-u>'}
+})
 EOF
-    nnoremap j <Plug>(accelerated_jk_gj)
-    nnoremap k <Plug>(accelerated_jk_gk)
-endif
+nnoremap j <Plug>(accelerated_jk_gj)
+nnoremap k <Plug>(accelerated_jk_gk)
+
+" Cutlass
+nnoremap x d
+xnoremap x d
+nnoremap xx dd
+nnoremap X D
+
+let g:yoinkIncludeDeleteOperations = 1
+
+noremap <c-n> <plug>(YoinkPostPasteSwapBack)
+noremap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+noremap p <plug>(YoinkPaste_p)
+noremap P <plug>(YoinkPaste_P)
 
 nnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap ; :
@@ -97,10 +112,6 @@ noremap <leader>y "+y
 
 " Put system clipboard
 inoremap <c-s-v> <c-r>+
-
-" Put yanked text
-noremap <leader>p "0p
-noremap <leader>P "0P
 
 " Toggle spellcheck
 noremap <silent> <leader>s :set spell!<CR>
