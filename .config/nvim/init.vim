@@ -27,6 +27,8 @@ filetype plugin indent on
 
 colors mustang
 
+exe "source" stdpath('config')..'/vinit.lua'
+
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ruby_host_prog = '/usr/local/lib/ruby/gems/3.0.0/bin/neovim-ruby-host'
 
@@ -57,12 +59,6 @@ let mapleader=','
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
-lua << EOF
-require("accelerated-jk").setup({
-    acceleration_table = { 12,17,21,24,26,28,30 },
-    acceleration_motions = {'w', 'b', 'e', '\\<c-d>', '\\<c-u>'}
-})
-EOF
 nnoremap j <Plug>(accelerated_jk_gj)
 nnoremap k <Plug>(accelerated_jk_gk)
 
@@ -114,6 +110,10 @@ noremap <leader>y "+y
 " Put system clipboard
 inoremap <c-s-v> <c-r>+
 
+" Put system text
+noremap <leader>p "+p
+noremap <leader>P "+P
+
 " Toggle spellcheck
 noremap <silent> <leader>s :set spell!<CR>
 
@@ -124,6 +124,7 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 " Commentary
 noremap <silent> <space> :Commentary<cr>
 autocmd FileType hcl setlocal commentstring=#\ %s
+autocmd FileType autohotkey setlocal commentstring=;\ %s
 
 " Language specific settings
 augroup golang
@@ -139,3 +140,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Rust fmt on save
 autocmd BufWritePost *.rs silent! :!cargo fmt
+
+" Open config
+command Config :exe "edit" stdpath("config")."/init.vim"
