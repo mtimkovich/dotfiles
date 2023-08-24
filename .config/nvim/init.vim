@@ -67,10 +67,11 @@ nnoremap j <Plug>(accelerated_jk_gj)
 nnoremap k <Plug>(accelerated_jk_gk)
 
 " Cutlass
-nnoremap x d
-xnoremap x d
-nnoremap xx dd
-nnoremap X D
+nnoremap m d
+xnoremap m d
+nnoremap mm dd
+
+noremap M m
 
 let g:yoinkIncludeDeleteOperations = 1
 
