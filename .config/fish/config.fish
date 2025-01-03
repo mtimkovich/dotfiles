@@ -1,4 +1,4 @@
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go /snap/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go /snap/bin /mnt/c/Users/v-mtimkovich/bin
 
 bind \ce accept-autosuggestion
 bind \cf accept-autosuggestion execute
@@ -25,7 +25,9 @@ bind \ct __fzf_search_current_dir
 alias rm 'rm -v'
 alias cp 'renamer -fy -c "cp -r"'
 alias mv 'renamer -fy'
-alias ls 'ls -ApG --color'
+alias ls 'ls -ApG'
+alias ll 'ls -lh -ApG'
+alias lt 'ls -lh -ApG --sort time'
 alias .. 'cd ..'
 alias :q 'exit'
 alias please 'sudo'
@@ -34,6 +36,7 @@ alias pip 'pip3'
 alias vim 'nvim'
 alias ports 'lsof -i -P -n | grep LISTEN'
 alias fm 'vifm'
+alias config 'vim ~/.config/fish/config.fish'
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t 'tmux attach || tmux new-session'
@@ -80,5 +83,4 @@ end
 alias v 'vim (fzf)'
 alias c 'cd (fd -td | fzf)'
 
-# Load fishmarks (http://github.com/techwizrd/fishmarks)
-# . $HOME/.fishmarks/marks.fish
+zoxide init fish | source

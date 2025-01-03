@@ -13,9 +13,11 @@ Plug 'rust-lang/rust.vim'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
 Plug 'vim-python/python-syntax'
-Plug 'rainbowhxch/accelerated-jk.nvim'
 Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
+Plug 'bullets-vim/bullets.vim'
+Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Colors
 Plug 'arcticicestudio/nord-vim'
@@ -27,10 +29,7 @@ filetype plugin indent on
 
 colors mustang
 
-exe "source" stdpath('config')..'/vinit.lua'
-
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:ruby_host_prog = '/usr/local/lib/ruby/gems/3.0.0/bin/neovim-ruby-host'
+let g:python3_host_prog = '/usr/bin/python3'
 
 set hidden
 
@@ -39,9 +38,9 @@ set linebreak
 set mouse=a
 set number
 
-set relativenumber
-au! InsertLeave * set relativenumber
-au! InsertEnter * set relativenumber!
+" set relativenumber
+" au! InsertLeave * set relativenumber
+" au! InsertEnter * set relativenumber!
 
 set scrolloff=5
 set smartcase
@@ -58,9 +57,6 @@ let mapleader=','
 
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-
-nnoremap j <Plug>(accelerated_jk_gj)
-nnoremap k <Plug>(accelerated_jk_gk)
 
 " Cutlass
 nnoremap m d
@@ -83,6 +79,7 @@ noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
+noremap <cr> o<esc>
 
 vnoremap . :normal .<CR>
 vnoremap @ :normal @
@@ -97,7 +94,7 @@ set undoreload=10000
 " Insert filename
 inoremap \fn <C-R>=expand("%:t:r")<CR>
 
-nnoremap <silent> <leader>t :Files<CR>
+nnoremap <silent> <leader>t :GFiles<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>r :Rg<CR>
 
@@ -140,6 +137,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Rust fmt on save
 autocmd BufWritePost *.rs silent! :!cargo fmt
+autocmd BufWritePre *.go :GoFmt
 
 " Open config
 command Config :exe "edit" stdpath("config")."/init.vim"

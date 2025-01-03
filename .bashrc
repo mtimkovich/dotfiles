@@ -6,7 +6,7 @@ alias mv='mv -vi'
 alias ..='cd ..'
 alias ls='ls -Ap --color=auto'
 
-PATH=$(yarn global bin):$PATH
+PATH=~/bin:$PATH
 
 EDITOR=vim
 
@@ -40,3 +40,5 @@ extract()
 }
 source "$HOME/.cargo/env"
 . "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
