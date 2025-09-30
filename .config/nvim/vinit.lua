@@ -1,4 +1,14 @@
-require("accelerated-jk").setup({
-    acceleration_table = { 17, 21, 24, 26, 28, 30 },
-    acceleration_motions = {'w', 'b', 'e', '\\<c-d>', '\\<c-u>'}
-})
+local lspconfig = require('lspconfig')
+lspconfig.rust_analyzer.setup {
+  -- Server-specific settings. See `:help lspconfig-setup`
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false
+      },
+      checkOnSave = {
+        enable = false
+      },
+    },
+  },
+}

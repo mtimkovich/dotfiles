@@ -1,4 +1,4 @@
-set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go /snap/bin /mnt/c/Users/v-mtimkovich/bin
+set PATH $PATH ~/bin ~/.local/bin ~/.cargo/bin ~/go /snap/bin /mnt/c/Users/v-mtimkovich/bin /mnt/c/Program\ Files/Git/cmd
 
 bind \ce accept-autosuggestion
 bind \cf accept-autosuggestion execute
@@ -21,6 +21,8 @@ set -x FZF_DEFAULT_OPTS '
 
 bind \ct __fzf_search_current_dir
 
+set -x EDITOR nvim
+
 # Aliases
 alias rm 'rm -v'
 alias cp 'renamer -fy -c "cp -r"'
@@ -37,6 +39,7 @@ alias vim 'nvim'
 alias ports 'lsof -i -P -n | grep LISTEN'
 alias fm 'vifm'
 alias config 'vim ~/.config/fish/config.fish'
+alias gto 'git br --sort=-committerdate | grep -v "^\*" | fzf | xargs git co'
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t 'tmux attach || tmux new-session'
@@ -80,7 +83,27 @@ function proj_root -d "root of git project else the current dir"
   echo $base
 end
 
-alias v 'vim (fzf)'
-alias c 'cd (fd -td | fzf)'
+function v
+    set file (fzf)
+    if [ $status -ne 0 ]
+        return
+    end
+
+    vim $file
+end
+
+function c
+    set dir (fd -td | fzf)
+    if [ $status -ne 0 ]
+        return
+    end
+
+    cd $dir
+end
+
+function caliperr
+    rg -C1 -i (printf "%x\n" $argv) /home/max/src/caliptra-sw/error/src/lib.rs
+end
 
 zoxide init fish | source
+alias cd 'z'

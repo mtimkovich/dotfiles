@@ -17,7 +17,8 @@ Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 Plug 'bullets-vim/bullets.vim'
 Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'rhysd/clever-f.vim'
 
 " Colors
 Plug 'arcticicestudio/nord-vim'
@@ -28,6 +29,8 @@ call plug#end()
 filetype plugin indent on
 
 colors mustang
+
+exe "source" stdpath('config')..'/vinit.lua'
 
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -141,3 +144,6 @@ autocmd BufWritePre *.go :GoFmt
 
 " Open config
 command Config :exe "edit" stdpath("config")."/init.vim"
+
+" Go to definition
+nnoremap <silent> gd <c-]>
